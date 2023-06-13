@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 
- -- NO TOCAR
+
 app.use(bodyParser.json());
 
 //SUMA
@@ -50,18 +50,27 @@ app.post('/rest', (req, res) => {
   return res.json({ result: rest });
 });
 
-// Start the server
-app.listen(4000, () => {
-  console.log('Server is running on port 3000');
-});
 
 
 //MENSAJE CON DATOS
+app.get('/mensaje', (req, res) => {
+  const message = "Oscar Perez - 20121349,  Esdras Toc - 201807373,  Fernando De Jesus- 201608315"
+
+  // Check if the message exists
+  if (!message) {
+    return res.status(400).json({ error: 'Message is required.' });
+  }
+
+  // Determine the type of the message
+  const messageType = typeof message;
+
+  // Send the response with the message type
+  res.json({ type: message });
+});
 
 
 
-
-// Start the server- NO TOCAR
+// Start the server
 app.listen(4000, () => {
   console.log('Server is running on port 4000');
 });
