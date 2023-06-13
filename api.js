@@ -18,7 +18,25 @@ app.post('/suma', (req, res) => {
 });
 
 //PRIMOS
+app.post('/primo', (req, res) => {
+  const { num } = req.body;
+  
+  if (typeof num !== 'number') {
+    return res.status(400).json({ error: 'El dato no es de tipo numerico' });
+  }
 
+  if (num <= 1) {
+    return res.json({esPrimo : false});
+  }
+
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return res.json({esPrimo : false});
+    }
+  }
+
+  return res.json({esPrimo : true});
+});
 //RESTA
 
 //MENSAJE CON DATOS
