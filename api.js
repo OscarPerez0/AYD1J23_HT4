@@ -6,14 +6,14 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 //SUMA
-app.post('/suma', (req, res) => {
+app.post('/producto', (req, res) => {
   const { num1, num2 } = req.body;
 
   if (typeof num1 !== 'number' || typeof num2 !== 'number') {
     return res.status(400).json({ error: 'Both num1 and num2 should be numbers' });
   }
 
-  const sum = num1 + num2;
+  const sum = num1 * num2;
   return res.json({ result: sum });
 });
 
